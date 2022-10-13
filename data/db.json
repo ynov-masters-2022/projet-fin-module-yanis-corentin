@@ -1,0 +1,109 @@
+{
+    "musics": [
+        {
+            "id": 1,
+            "icon": "https://static.fnac-static.com/multimedia/Images/FR/NR/c8/53/d4/13915080/1540-1/tsp20211110173128/Jefe.jpg",
+            "title": "YSL",
+            "author": "Ninho",
+            "date": "2021-12-03",
+            "duration": 219,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/12/Ninho-YSL.mp3"
+        },
+        {
+            "id": 2,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "Tempete",
+            "author": "SCH",
+            "date": "2021-03-19",
+            "duration": 221,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3"
+        },
+        {
+            "id": 3,
+            "icon": "https://static.fnac-static.com/multimedia/Images/FR/NR/c8/53/d4/13915080/1540-1/tsp20211110173128/Jefe.jpg",
+            "title": "Jefe",
+            "author": "Ninho",
+            "date": "2021-03-19",
+            "duration": 178,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/12/Ninho-Blanka.mp3"
+        },
+        {
+            "id": 4,
+            "icon": "https://www.33rapfr.cc/wp-content/uploads/2022/07/Gambi-PETETE-mp3-image.jpg",
+            "title": "PETETE",
+            "author": "Gambi",
+            "date": "2022-07-29",
+            "duration": 123,
+            "link": "https://www.33rapfr.cc/wp-content/uploads/2022/07/Gambi-PETETE.mp3"
+        },
+        {
+            "id": 5,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "Tempete",
+            "author": "SCH",
+            "date": "2021-03-19",
+            "duration": 221,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3"
+        },
+        {
+            "id": 6,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "Tempete",
+            "author": "SCH",
+            "date": "2021-03-19",
+            "duration": 221,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3"
+        },
+        {
+            "id": 7,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "Tempete",
+            "author": "SCH",
+            "date": "2021-03-19",
+            "duration": 221,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3"
+        },
+        {
+            "id": 8,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "Tempete",
+            "author": "SCH",
+            "date": "2021-03-19",
+            "duration": 221,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3"
+        },
+        {
+            "id": 9,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "Tempete",
+            "author": "SCH",
+            "date": "2021-03-19",
+            "duration": 221,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3"
+        },
+        {
+            "id": 10,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "Tempete",
+            "author": "SCH",
+            "date": "2021-03-19",
+            "duration": 221,
+            "link": "https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3"
+        }
+    
+    ],
+
+    "playlist": [
+        {
+            "id":1,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "playlist 1",
+            "author": "Ninho",
+            "date": "2021-12-03",
+            "musique": [
+                1, 2
+            ]
+        }
+    ]
+}
+    

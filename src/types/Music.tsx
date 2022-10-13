@@ -5,6 +5,7 @@ interface Music {
     author: string;
     date: Date;
     duration: number;
+    link: string;
 }
 
 export default Music
