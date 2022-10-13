@@ -1,8 +1,11 @@
 import './App.css';
+import Homepage from './views/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
-    <div></div>
+    <Homepage />
   );
 }
 
