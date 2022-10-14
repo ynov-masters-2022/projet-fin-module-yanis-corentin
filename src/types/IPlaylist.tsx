@@ -1,4 +1,4 @@
-interface Playlist{
+interface IPlaylist{
     id: number;
     icon: string;
     title: string;
@@ -7,4 +7,4 @@ interface Playlist{
     musique: number[];
 }
 
-export default Playlist;
+export default IPlaylist;

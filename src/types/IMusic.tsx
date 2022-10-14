@@ -1,4 +1,4 @@
-interface Music {
+interface IMusic {
     id: number;
     icon: string;
     title: string;
@@ -8,4 +8,4 @@ interface Music {
     link: string;
 }
 
-export default Music
+export default IMusic

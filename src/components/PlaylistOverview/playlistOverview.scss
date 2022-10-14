@@ -1,0 +1,19 @@
+.playlist-container{
+    display: flex;
+    width:fit-content;
+    max-width: 300px;
+    max-height: 300px;
+    flex-direction: column;
+    background-color: #ccc;
+    margin: 20px 20px;
+
+    .playlist-info{
+
+        p{
+            color: red;
+        }
+    }
+    img{
+        width:200px;
+    }
+}
