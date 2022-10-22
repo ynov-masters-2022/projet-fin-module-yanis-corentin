@@ -3,6 +3,7 @@ interface IMusic {
     icon: string;
     title: string;
     author: string;
+    album: string;
     date: Date;
     duration: number;
     link: string;
