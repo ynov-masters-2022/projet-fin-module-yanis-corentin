@@ -1,0 +1,38 @@
+.playlist-header-container{
+    display: flex;
+    width:fit-content;
+    flex-direction: row;
+    color: white;
+    padding: 50px;
+    gap: 20px;
+
+    .playlist-header-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        h2{
+            font-size: 3.5em;
+            font-weight: bold;
+        }
+    }
+    .playlist-info{
+
+        p{
+            .author{
+                font-weight: 700;
+            }
+            .nbmusic{
+                font-weight: 650;
+            }
+            .duration{
+
+            }
+            
+
+        }
+    }
+    img{
+        width:200px;
+    }
+}

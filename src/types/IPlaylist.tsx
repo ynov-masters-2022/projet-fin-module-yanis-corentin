@@ -3,7 +3,7 @@ interface IPlaylist{
     icon: string;
     title: string;
     author: string;
-    date: Date;
+    date: string;
     musicsId: number[];
 }
 

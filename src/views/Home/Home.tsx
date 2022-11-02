@@ -20,7 +20,7 @@ const Homepage = () => {
                 (<ul>
                     {
                         playlist.map((_playlist, index) => (
-                            <Link to={ '/playlist/'+ _playlist.id }>
+                            <Link to={ '/playlist/'+ _playlist.id } state= {{playlist: _playlist}}>
                                 <li key={index}>
                                     <div className='playlist-container'>
                                         <img src={_playlist.icon} alt="icon for {_playlist.title}"/>
