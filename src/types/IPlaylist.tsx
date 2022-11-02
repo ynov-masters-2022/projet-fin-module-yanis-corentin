@@ -4,7 +4,7 @@ interface IPlaylist{
     title: string;
     author: string;
     date: Date;
-    musique: number[];
+    musicsId: number[];
 }
 
 export default IPlaylist;
