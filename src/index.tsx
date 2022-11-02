@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useContext, createContext, useReducer } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const [theme, setTheme] = useReducer()
+const ThemeContext = createContext('Light');
+const MusicContext = createContext({
+  title: 'Choose your music',
+  sound: 'test'
+});
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeContext.Provider value={theme}>        
+      <MusicContext.Provider value={signedInUser}>          
+        <App />
+      </MusicContext.Provider>      
+    </ThemeContext.Provider>
   </React.StrictMode>
 );
 
