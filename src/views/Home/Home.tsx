@@ -1,15 +1,41 @@
 import Nav from '../../components/CustomNavbar'
 import './Home.scss'
-import PlaylistOverview from '../../components/PlaylistOverview/PlaylistOverview'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { AiFillPlayCircle } from 'react-icons/ai'
 // import PlaylistContent from '../../components/PlaylistContent/PlaylistContent'
 
 const Homepage = () => {
-    let date= new Date("2021-12-03")
+    const [playlist, setPlaylist] = useState<any[]>([]);
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_API_URL+'/playlist').then(res => {console.log(res);setPlaylist(res.data)})
+    }, []);
+
     return (
         <div className="Homepage-container">
             <Nav />
             <div className="playlist-views">
-                <PlaylistOverview id={1} icon='https://static.fnac-static.com/multimedia/Images/FR/NR/c8/53/d4/13915080/1540-1/tsp20211110173128/Jefe.jpg' title='Playlist 1' author='Yanis' date={date} musique={[1]}/>
+                {playlist.length > 0 ?
+                (<ul>
+                    {
+                        playlist.map((_playlist, index) => (
+                            <Link to={ '/playlist/'+ _playlist.id }>
+                                <li key={index}>
+                                    <div className='playlist-container'>
+                                        <img src={_playlist.icon} alt="icon for {_playlist.title}"/>
+                                        <p>{_playlist.title}</p>
+                                        <p>{_playlist.author}</p>
+                                        <p>{_playlist.date}</p>
+                                        <AiFillPlayCircle/>
+                                    </div>
+                                </li>
+                            </Link>
+                        ))
+                    }
+                </ul>)
+                : 
+                (<p>loading ...</p>) }
             </div>
             {/* <PlaylistContent /> */}
         </div>
