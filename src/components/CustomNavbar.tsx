@@ -3,9 +3,9 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const CustomNavbar = () => {
     return ( 
-        <Navbar expand="lg" variant="light" bg="light">
+        <Navbar expand="lg" variant="dark" bg="dark">
             <Container>
-                <Navbar.Brand href="#">YCP</Navbar.Brand>
+                <Navbar.Brand href="/">YCP</Navbar.Brand>
             </Container>
         </Navbar>
      );
