@@ -1,10 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import {IMusic} from "../../types/IMusic";
-import IPlaylist from "../../types/IPlaylist";
 import { musicReducer } from './musicReducer';
 
 export type InitialStateType = {
-    playlist: IPlaylist | null,
+    playlistMusicsIds: number[],
+    index: number | null,
     music: IMusic | null,
     isRunning:boolean,
     stateDuration: number | null,
@@ -12,11 +12,12 @@ export type InitialStateType = {
 }
 
 export const initialState = {
-    playlist: null,
+    playlistMusicsIds: [],
+    index: null,
     music: null,
     isRunning:false,
     stateDuration:null,
-    volume: 50,
+    volume: 30,
 }
 
 export const MusicContext = createContext<{
@@ -26,8 +27,6 @@ export const MusicContext = createContext<{
     state: initialState,
     dispatch: () => null
 });
-
-export const useMusicContext = () => React.useContext(MusicContext);
 
 export function MusicProvider(props:any) {
     const [state, dispatch] = useReducer(musicReducer, initialState);

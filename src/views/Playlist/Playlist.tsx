@@ -6,7 +6,6 @@ import './Playlist.scss'
 import {GrPrevious} from 'react-icons/gr'
 
 const Playlist = () => {
-    const id = useParams();
     const location = useLocation()
     const navigate = useNavigate();
     const {playlist} = location.state
@@ -15,11 +14,6 @@ const Playlist = () => {
     const updateDuration = (duration : number) =>{
         setTotalDuration(duration)
     }
-
-    useEffect(() => {
-        console.log(id,location,playlist);
-        
-    }, []);
 
     return (
         <div className="Playlist-container">

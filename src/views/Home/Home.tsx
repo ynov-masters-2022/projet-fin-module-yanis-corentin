@@ -3,12 +3,11 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { AiFillPlayCircle } from 'react-icons/ai'
-// import PlaylistContent from '../../components/PlaylistContent/PlaylistContent'
 
 const Homepage = () => {
     const [playlist, setPlaylist] = useState<any[]>([]);
     useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL+'/playlist').then(res => {console.log(res);setPlaylist(res.data)})
+        axios.get(process.env.REACT_APP_API_URL+'/playlist').then(res => {setPlaylist(res.data)})
     }, []);
 
     return (
