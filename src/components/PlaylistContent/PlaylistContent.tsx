@@ -33,7 +33,7 @@ export default function PlaylistContent({musicsId, updateTotalDuration}:any) {
         {
             musics.map((music, index) =>
                 (
-                <li key={index}><MusicItem key={index} id={music.id} icon={music.icon} title={music.title} author={music.author} album={music.album} date={music.date} duration={music.duration} link={music.link} /></li>
+                <li key={index}><MusicItem music={music} index={index+1} listMusicsIds={musicsId}/></li>
                 )
             )
         }

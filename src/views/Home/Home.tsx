@@ -25,7 +25,7 @@ const Homepage = () => {
                                         <p>{_playlist.title}</p>
                                         <p>{_playlist.author}</p>
                                         <p>{_playlist.date}</p>
-                                        <AiFillPlayCircle/>
+                                        <AiFillPlayCircle />
                                     </div>
                                 </li>
                             </Link>

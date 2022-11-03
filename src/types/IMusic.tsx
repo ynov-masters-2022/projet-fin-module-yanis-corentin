@@ -1,4 +1,4 @@
-interface IMusic {
+export interface IMusic {
     id: number;
     icon: string;
     title: string;
@@ -9,4 +9,9 @@ interface IMusic {
     link: string;
 }
 
-export default IMusic
+export interface IMusicProps {
+    music: IMusic;
+    index: number;
+    listMusicsIds:number[];
+}
+
