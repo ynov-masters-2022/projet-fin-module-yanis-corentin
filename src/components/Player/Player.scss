@@ -3,7 +3,6 @@
     bottom: 0;
     left: 0;
     transform: translateX(22%);
-    background-color: #333;
     width: 70vw;
     height: 150px;
     min-height: 100px;
@@ -16,8 +15,8 @@
         cursor: pointer;
     }
 
+
     figure {
-        color: white;
         display: flex;
         justify-content: space-between;
         margin: 0 50px 0px 50px;
