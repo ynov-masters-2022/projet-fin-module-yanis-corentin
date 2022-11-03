@@ -33,25 +33,26 @@ export const musicReducer = (state: any | null, action: MusicPayload) => {
     switch (action.type) {
       case ActionsTypes.SET_MUSIC:
         return { 
+            ...state,
             music: action.payload.music,
             isRunning: true,
             stateDuration: 0,
         }
         case ActionsTypes.SET_PAUSE:
             return{ 
-                isRunning: false,
+                ...state,isRunning: false,
             }
         case ActionsTypes.SET_PLAY:
             return{ 
-                isRunning: true,
+                ...state,isRunning: true,
             }
         case ActionsTypes.SET_DURATION:
             return{ 
-                stateDuration: action.payload.stateDuration,
+                ...state,stateDuration: action.payload.stateDuration,
             }
         case ActionsTypes.SET_VOLUME:
             return{ 
-                volume: action.payload.volume,
+                ...state,volume: action.payload.volume,
             }
       default:
         return state;

@@ -32,6 +32,8 @@ export const MusicContext = createContext<{
     dispatch: () => null
 });
 
+export const useMusicContext = () => React.useContext(MusicContext);
+
 export function MusicProvider(props:any) {
     const [state, dispatch] = useReducer(musicReducer, initialState);
   
