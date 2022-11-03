@@ -1,23 +1,18 @@
 import React, { createContext, useReducer } from "react";
+import {IMusic} from "../../types/IMusic";
+import IPlaylist from "../../types/IPlaylist";
 import { musicReducer } from './musicReducer';
 
-type currentMusicType = {
-    id: number;
-    icon: string;
-    title: string;
-    author: string;
-    album: string;
-    duration: number;
-    link: string;
-}
 export type InitialStateType = {
-    music: currentMusicType | null,
+    playlist: IPlaylist | null,
+    music: IMusic | null,
     isRunning:boolean,
     stateDuration: number | null,
     volume: number,
 }
 
 export const initialState = {
+    playlist: null,
     music: null,
     isRunning:false,
     stateDuration:null,

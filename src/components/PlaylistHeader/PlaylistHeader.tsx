@@ -6,7 +6,6 @@ import {fancyTimeFormat} from "../../Utils/utils"
 export default function PlaylistHeader({playlist, totalDuration}:any) {
 
     
-
     useEffect(() => {
         console.log("playlist",playlist);
         
