@@ -8,7 +8,7 @@ import { AiFillPlayCircle } from 'react-icons/ai'
 const Homepage = () => {
     const [playlist, setPlaylist] = useState<any[]>([]);
     useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL+'/playlist').then(res => {console.log(res);setPlaylist(res.data)})
+        axios.get(process.env.REACT_APP_API_URL+'/playlist').then(res => {setPlaylist(res.data)})
     }, []);
 
     return (
