@@ -12,10 +12,16 @@ type currentMusicType = {
 }
 export type InitialStateType = {
     music: currentMusicType | null,
+    isRunning:boolean,
+    stateDuration: number | null,
+    volume: number,
 }
 
 export const initialState = {
     music: null,
+    isRunning:false,
+    stateDuration:null,
+    volume: 50,
 }
 
 export const MusicContext = createContext<{
