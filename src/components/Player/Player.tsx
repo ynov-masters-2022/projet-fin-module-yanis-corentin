@@ -1,5 +1,5 @@
 import './Player.scss';
-import { AiFillPlayCircle } from 'react-icons/ai';
+import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai';
 import { GoUnmute, GoMute } from 'react-icons/go';
 import { useEffect, useRef, useState } from "react";
 import { useMusicContext } from "../../context/musicContext/musicContext";
@@ -75,7 +75,10 @@ export default function Player() {
 
                 <div className="player-center">
                     <div className="player-center-header">
-                        <button onClick={handleIsRunning}> <AiFillPlayCircle /> </button>
+                        {
+                            music.state.isRunning ? (<button onClick={handleIsRunning}> <AiFillPauseCircle /> </button>)
+                            : ( <button onClick={handleIsRunning}> <AiFillPlayCircle /> </button>)
+                        }
                     </div>
                     <audio
                         ref={playerRef}
