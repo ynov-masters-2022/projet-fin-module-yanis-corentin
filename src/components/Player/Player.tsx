@@ -1,5 +1,6 @@
 import './Player.scss';
 import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai';
+import { ImPrevious, ImNext } from 'react-icons/im';
 import { GoUnmute, GoMute } from 'react-icons/go';
 import { useEffect, useRef, useState } from "react";
 import { useMusicContext } from "../../context/musicContext/musicContext";
@@ -47,6 +48,13 @@ export default function Player() {
         
     }
 
+    const handlePrevious = () => {
+        console.log('clicked');
+    }
+    const handleNext = () => {
+        
+    }
+
     useEffect(() => {
         console.log('isRunning has been modified');
         if(playerRef.current){
@@ -66,26 +74,28 @@ export default function Player() {
     }, []);
 
     return (
-        <div className="player-container">
+        <div className="player-container" style={music.state.music? {} : {display:"none"}}>
             <figure>
                 <div className="player-left">
-                    <img src='https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg' alt=''/>
-                    <figcaption> <span> Tempete </span> <span> SCH </span> </figcaption>
+                    <img src={music.state.music?.icon} alt={music.state.music?.title +' by '+ music.state.music?.author}/>
+                    <figcaption> <span> {music.state.music?.title} </span> <span> {music.state.music?.author} </span> </figcaption>
                 </div>
 
                 <div className="player-center">
                     <div className="player-center-header">
+                        <button onClick={handlePrevious}> <ImPrevious /> </button>
                         {
                             music.state.isRunning ? (<button onClick={handleIsRunning}> <AiFillPauseCircle /> </button>)
                             : ( <button onClick={handleIsRunning}> <AiFillPlayCircle /> </button>)
                         }
+                        <button onClick={handleNext}> <ImNext /> </button>
                     </div>
                     <audio
                         ref={playerRef}
                         controls
-                        src="https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3">
-                            <a href="https://wvv.33rapfr.com/wp-content/uploads/2021/03/21-Temp%C3%AAte-Bonus.mp3">
-                                Download audio
+                        src={music.state.music?.link}>
+                            <a href={music.state.music?.link}>
+                                Download audio  
                             </a>
                     </audio>
                 </div>
