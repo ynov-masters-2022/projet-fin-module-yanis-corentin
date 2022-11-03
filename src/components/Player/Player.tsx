@@ -81,7 +81,7 @@ export default function Player() {
             let nextMusic = await fetchMusicById(music.state.playlistMusicsIds[music.state.index-1])
             music.dispatch({
                 type: ActionsTypes.SET_NEXT_PREVIOUS,
-                payload: { index: music.state.index, music: nextMusic}
+                payload: { index: music.state.index, music: nextMusic},
             })
         }
     }
@@ -121,6 +121,7 @@ export default function Player() {
                     </div>
                     <audio
                         ref={playerRef}
+                        onEnded={handleNext}
                         controls
                         src={music.state.music?.link}>
                             <a href={music.state.music?.link}>
