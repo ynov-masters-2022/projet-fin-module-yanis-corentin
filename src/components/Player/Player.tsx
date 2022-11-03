@@ -1,13 +1,16 @@
 import './Player.scss';
 import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai';
 import { GoUnmute, GoMute } from 'react-icons/go';
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useMusicContext } from "../../context/musicContext/musicContext";
+import { ThemeContext } from '../../context/themeContext/themeContext';
 export default function Player() {
 
     const music = useMusicContext();
     const playerRef = useRef<HTMLAudioElement>(null)
     const [isMuted, setIsMuted] = useState(false);
+    const theme = useContext(ThemeContext);
+    const darkMode = theme.state.darkMode;
 
     const handleIsRunning=()=>{
         if(playerRef.current){
@@ -66,7 +69,7 @@ export default function Player() {
     }, []);
 
     return (
-        <div className="player-container">
+        <div className={`player-container ${darkMode ? "dark-mode" : "light-mode"}`}>
             <figure>
                 <div className="player-left">
                     <img src='https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg' alt=''/>
