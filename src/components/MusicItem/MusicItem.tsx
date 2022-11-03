@@ -16,12 +16,14 @@ export default function MusicItem({music, index, listMusicsIds}:IMusicProps) {
                 <AiFillPlayCircle onClick={() => {
                     dispatch({
                         type: ActionsTypes.SET_MUSIC,
-                        payload: { playlist: listMusicsIds, music: music}
-                    })
+                        payload: { playlistMusicsIds: listMusicsIds, index: index, music: music}
+                    });
                 }}/>
             </div>
             <div className='music-title'>
-                <img aria-hidden="false" draggable="false" loading="eager" src={music.icon} alt=""/>
+                <img aria-hidden="false" draggable="false" loading="eager" src={music.icon} alt="" onClick={() => {
+                    console.log(listMusicsIds)
+                }}/>
                 <div className='music-infos'>
                     <p>{music.title}</p>
                     <p>{music.author}</p>    

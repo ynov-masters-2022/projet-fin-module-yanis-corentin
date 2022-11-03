@@ -3,11 +3,13 @@ import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai';
 import { ImPrevious, ImNext } from 'react-icons/im';
 import { GoUnmute, GoMute } from 'react-icons/go';
 import { useContext, useEffect, useRef, useState } from "react";
-import { useMusicContext } from "../../context/musicContext/musicContext";
+import { MusicContext } from "../../context/musicContext/musicContext";
 import { ThemeContext } from '../../context/themeContext/themeContext';
+import { ActionsTypes } from '../../context/musicContext/musicReducer';
+import axios from 'axios';
 export default function Player() {
 
-    const music = useMusicContext();
+    const music = useContext(MusicContext);
     const playerRef = useRef<HTMLAudioElement>(null)
     const [isMuted, setIsMuted] = useState(false);
     const theme = useContext(ThemeContext);
@@ -51,11 +53,55 @@ export default function Player() {
         
     }
 
-    const handlePrevious = () => {
-        console.log('clicked');
+    async function fetchMusicById(id:number){
+        const res = await axios.get(`http://localhost:3001/musics/${id}`) 
+        console.log(res.data)
+        return res.data
     }
-    const handleNext = () => {
+
+    const handlePrevious = async () => {
+        console.log(music.state.playlistMusicsIds);
+
+        var index: number | undefined;
+        if (music.state.index && music.state.index === 1 && music.state.playlistMusicsIds.length > 0){
+            index = music.state.playlistMusicsIds.length;
+            
+        } else if (music.state.index && music.state.playlistMusicsIds.length > 0){
+            index = music.state.index - 1;
+        } else {
+            index = -1;
+        }
+
+        console.log(index);
+
+        if (index != undefined && index > 0){
+            let previousMusic = await fetchMusicById(index)
+            music.dispatch({
+                type: ActionsTypes.SET_NEXT_PREVIOUS,
+                payload: { index: index, music: previousMusic}
+            })
+        }
         
+    }
+
+    const handleNext = async () => {
+        var index: number | undefined;
+        if (music.state.index && music.state.playlistMusicsIds.length > 0 && music.state.index === music.state.playlistMusicsIds.length ){
+            index = 1;
+            
+        } else if (music.state.index && music.state.playlistMusicsIds.length > 0){
+            index = music.state.index + 1;
+        } else {
+            index = -1;
+        }
+
+        if (index != undefined && index > 0){
+            let previousMusic = await fetchMusicById(index)
+            music.dispatch({
+                type: ActionsTypes.SET_NEXT_PREVIOUS,
+                payload: { index: index, music: previousMusic}
+            })
+        }
     }
 
     useEffect(() => {
@@ -78,7 +124,7 @@ export default function Player() {
 
     return (
 
-        <div className={`player-container ${darkMode ? "dark-mode" : "light-mode"}`}>
+        <div className={`player-container ${darkMode ? "dark-mode" : "light-mode"}`} style={music.state.music ? {} : {display:"none"}}>
             <figure>
                 <div className="player-left">
                     <img src={music.state.music?.icon} alt={music.state.music?.title +' by '+ music.state.music?.author}/>
