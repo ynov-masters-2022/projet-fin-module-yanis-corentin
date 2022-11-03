@@ -9,12 +9,14 @@ import Player from './components/Player/Player';
 function App() {
 
   return (
+    <>
       <Nav />
       <Player />
       <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/playlist/:id" element={<Playlist />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/playlist/:id" element={<Playlist />} />
       </Routes>
+    </>
   );
 }
 

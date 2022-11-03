@@ -35,7 +35,6 @@ const Homepage = () => {
                 : 
                 (<p>loading ...</p>) }
             </div>
-            <Playbar />
         </div>
     )
 }
