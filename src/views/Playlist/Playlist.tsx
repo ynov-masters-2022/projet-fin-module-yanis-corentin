@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom'
-import Nav from '../../components/CustomNavbar'
 import PlaylistContent from '../../components/PlaylistContent/PlaylistContent';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import './Playlist.scss'
@@ -23,7 +22,6 @@ const Playlist = () => {
     return (
         
         <div className="Playlist-container">
-            <Nav/>
             <div className="Playlist-header">
                 <PlaylistHeader playlist={playlist} totalDuration={totalDuration}/>
             </div>

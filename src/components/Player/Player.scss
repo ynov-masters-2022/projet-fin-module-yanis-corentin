@@ -1,0 +1,120 @@
+.player-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    transform: translateX(23%);
+    background-color: #333;
+    width: 70vw;
+    height: 150px;
+    min-height: 100px;
+    max-height: 200px;
+    border-radius: 50px 50px 5px 5px ;
+    z-index: 2;
+
+    button{
+        all:unset;
+        cursor: pointer;
+    }
+
+    figure {
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 50px 0px 50px;
+        align-items: center;
+        height: 100%;
+
+        .player-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 30%;
+
+            img {
+                width: 130px;
+                height: 130px;
+                max-width: 150px;
+                max-height: 150px;
+                min-width: 90px;
+                min-height: 90px;
+                object-fit:contain;
+            }
+
+            figcaption {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                span:first-child {
+                    font-size: 1em;
+                }
+
+                span:last-child {
+                    color: #aaa;
+                    font-size: 0.7em;
+                }
+            }
+        }
+
+        .player-center {
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+            width: 30%;
+            .player-center-header{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+
+                svg{
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            audio{
+                // display:none;
+                width: 100%;
+
+                // all control pannel
+                &::-webkit-media-controls-panel {
+                    -webkit-justify-content: center;
+                    // height: 25px;
+                }
+
+                /* play-button */
+                &::-webkit-media-controls-play-button {
+                    display: none;
+                }
+                /* mute-button */
+                &::-webkit-media-controls-mute-button {
+                    display: none;
+                }
+                &::-webkit-media-controls-volume-slider-container,
+                &::-webkit-media-controls-volume-slider{
+                    display: none;
+                }
+
+                /* timeline */
+                &::-webkit-media-controls-timeline {
+                    // display: none !important;
+                }
+                /* time stamp */
+                &::-webkit-media-controls-current-time-display {
+                    // display: none;
+                  }
+                &::-webkit-media-controls-time-remaining-display {
+                    // display: none;
+                }
+  
+            }
+            
+
+        }
+
+        .player-right {
+            width: 30%;
+            text-align: right;
+        }
+    
+    }
+}

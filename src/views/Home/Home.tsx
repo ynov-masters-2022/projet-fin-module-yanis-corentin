@@ -1,4 +1,3 @@
-import Nav from '../../components/CustomNavbar'
 import './Home.scss'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -14,7 +13,6 @@ const Homepage = () => {
 
     return (
         <div className="Homepage-container">
-            <Nav />
             <div className="playlist-views">
                 {playlist.length > 0 ?
                 (<ul>
