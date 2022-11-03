@@ -32,7 +32,7 @@ export const musicReducer = (state: any | null, action: MusicPayload) => {
                 playlistMusicsIds: action.payload.playlistMusicsIds,
                 index: action.payload.index,
                 music: action.payload.music,
-                isRunning: false,
+                isRunning: true,
                 stateDuration: 0,
             }
         case ActionsTypes.SET_PAUSE:
@@ -50,7 +50,7 @@ export const musicReducer = (state: any | null, action: MusicPayload) => {
                 ...state,
                 index: action.payload.index,
                 music: action.payload.music,
-                isRunning: false,
+                isRunning: true,
                 stateDuration: 0,
             }
         case ActionsTypes.SET_DURATION:

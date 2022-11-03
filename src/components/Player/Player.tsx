@@ -96,10 +96,7 @@ export default function Player() {
             }
             
         }
-    }, [music.state.isRunning]);
-
-    useEffect(() => {
-    }, []);
+    }, [music.state.isRunning, music.state.music]);
 
     return (
 
