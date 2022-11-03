@@ -1,15 +1,8 @@
 import './PlaylistHeader.scss';
 import { BsDot } from 'react-icons/bs'
-import { useEffect } from "react";
 import {fancyTimeFormat} from "../../Utils/utils"
 
 export default function PlaylistHeader({playlist, totalDuration}:any) {
-
-    
-    useEffect(() => {
-        console.log("playlist",playlist);
-        
-    }, []);
 
     return (
         <div className="playlist-header-container">

@@ -22,7 +22,6 @@ export default function MusicItem({music, index, listMusicsIds}:IMusicProps) {
             </div>
             <div className='music-title'>
                 <img aria-hidden="false" draggable="false" loading="eager" src={music.icon} alt="" onClick={() => {
-                    console.log(listMusicsIds)
                 }}/>
                 <div className='music-infos'>
                     <p>{music.title}</p>

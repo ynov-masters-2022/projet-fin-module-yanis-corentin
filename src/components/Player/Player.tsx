@@ -49,63 +49,44 @@ export default function Player() {
                 setIsMuted(false);
             }
         }
-        console.log("music.state.volume:",music.state.volume," | playerRef.current.volume", playerRef.current?.volume,"e.target.value",parseFloat(e.target.value));
         
     }
 
     async function fetchMusicById(id:number){
         const res = await axios.get(`http://localhost:3001/musics/${id}`) 
-        console.log(res.data)
         return res.data
     }
 
     const handlePrevious = async () => {
-        console.log(music.state.playlistMusicsIds);
-
-        var index: number | undefined;
-        if (music.state.index && music.state.index === 1 && music.state.playlistMusicsIds.length > 0){
-            index = music.state.playlistMusicsIds.length;
-            
-        } else if (music.state.index && music.state.playlistMusicsIds.length > 0){
-            index = music.state.index - 1;
-        } else {
-            index = -1;
-        }
-
-        console.log(index);
-
-        if (index != undefined && index > 0){
-            let previousMusic = await fetchMusicById(index)
+        if(music.state.index){
+            if (music.state.index > 1 ) {
+                music.state.index -= 1
+            } else {
+                music.state.index = music.state.playlistMusicsIds.length;
+            }
+            let previousMusic = await fetchMusicById(music.state.playlistMusicsIds[music.state.index-1])
             music.dispatch({
                 type: ActionsTypes.SET_NEXT_PREVIOUS,
-                payload: { index: index, music: previousMusic}
-            })
-        }
-        
-    }
-
-    const handleNext = async () => {
-        var index: number | undefined;
-        if (music.state.index && music.state.playlistMusicsIds.length > 0 && music.state.index === music.state.playlistMusicsIds.length ){
-            index = 1;
-            
-        } else if (music.state.index && music.state.playlistMusicsIds.length > 0){
-            index = music.state.index + 1;
-        } else {
-            index = -1;
-        }
-
-        if (index != undefined && index > 0){
-            let previousMusic = await fetchMusicById(index)
-            music.dispatch({
-                type: ActionsTypes.SET_NEXT_PREVIOUS,
-                payload: { index: index, music: previousMusic}
+                payload: { index: music.state.index, music: previousMusic}
             })
         }
     }
-
+    const handleNext = async () => {        
+        if(music.state.index){
+            if (music.state.index < music.state.playlistMusicsIds.length ) {
+                music.state.index += 1
+            } else {
+                music.state.index = 1;
+            }
+            let nextMusic = await fetchMusicById(music.state.playlistMusicsIds[music.state.index-1])
+            music.dispatch({
+                type: ActionsTypes.SET_NEXT_PREVIOUS,
+                payload: { index: music.state.index, music: nextMusic}
+            })
+        }
+    }
+    
     useEffect(() => {
-        console.log('isRunning has been modified');
         if(playerRef.current){
             if(music.state.isRunning){
                 playerRef.current.play();
@@ -113,13 +94,11 @@ export default function Player() {
             else{
                 playerRef.current.pause();
             }
-            console.log("music.state.isRunning",music.state.isRunning);
             
         }
     }, [music.state.isRunning]);
 
     useEffect(() => {
-        console.log("music state:",music.state);
     }, []);
 
     return (
