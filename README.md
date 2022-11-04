@@ -3,7 +3,7 @@
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
-Dans le cadre de notre projet de fin de module React, nous avons souhaité apprendre à utiliser les contexts au sein d'une application Typescript. Pour cela, nous avons décidé de réaliser un player audio (type _sportify_) qui, grâce aux contexts, peut tourner en continue quelque soit notre localisation sur l'application.
+Dans le cadre de notre projet de fin de module React, nous avons souhaité apprendre à utiliser les contexts au sein d'une application Typescript. Pour cela, nous avons décidé de réaliser un player audio (type _spotify_) qui, grâce aux contexts, peut tourner en continue quelque soit notre localisation sur l'application.
 
 #### Sommaire
   - [Présentation de l'outil](#présentation-de-loutil)
@@ -19,13 +19,13 @@ Dans le cadre de notre projet de fin de module React, nous avons souhaité appre
 
 ### Présentation de l'outil
 Lors du démarrage de l'outil, voici l'affichage de notre page d'accueil qui contient la liste des playlists disponibles sur notre application.
-![Screenshot](image.png)
+![image](https://user-images.githubusercontent.com/92028058/200021144-00212dc2-e15a-441e-9e7b-a5654701dc48.png)
 L'utilisateur peut alors sélectionner la playlist de son choix pour ensuite lancer une musique.
-![Screenshot](image.png)
+![image](https://user-images.githubusercontent.com/92028058/200021328-4d46d703-d3f3-4421-9b9d-015971fa473a.png)
 Une fois sélectionnée, la musique sera chargée dans le player audio et l'utilisateur pourra continuer à naviguer dans son application tout en profitant du song qu'il vient de lancer.
-![Screenshot](image.png)
+![image](https://user-images.githubusercontent.com/92028058/200021417-8925b1a7-ecc3-44a1-bd87-22d359bcbcdf.png)
 L'utilisateur à la possibilité d'interagir avec son player grâce aux fonctionnalités de : 
-![Screenshot](image.png)
+![image](https://user-images.githubusercontent.com/92028058/200021521-5635ff25-c839-4d50-b4ea-6c02a6f4d549.png)
 * Mise en Pause / reprise de lecture [1]
 * Passage à la musique suivante / retour à la musique précédente [2]
 * Réglage du volume / mute / démute [3]
@@ -34,8 +34,8 @@ L'utilisateur à la possibilité d'interagir avec son player grâce aux fonction
 Il faut savoir que si aucune action est faite avant la fin de la musique alors le player jouera la musique suivante qui est présente dans la playlist.
 
 Enfin, il est possible pour l'utilisateur de changer le mode d'affichage pour avoir un thème plus clair ou plus sombre en fonction de ses préférences.
-![Screenshot](image.png)
-![Screenshot](image.png)
+![image](https://user-images.githubusercontent.com/92028058/200022012-44fdd892-966b-4cf0-b76e-deb485331351.png)
+![image](https://user-images.githubusercontent.com/92028058/200021944-644f95c2-1ad9-435b-8b7c-c94b0071f1d5.png)
 
 ### Démarrage
 
