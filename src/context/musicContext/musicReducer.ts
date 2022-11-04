@@ -23,7 +23,6 @@ type MusicPayload = {
     }
 }
 
-
 export const musicReducer = (state: any | null, action: MusicPayload) => {
     switch (action.type) {
         case ActionsTypes.SET_MUSIC:
