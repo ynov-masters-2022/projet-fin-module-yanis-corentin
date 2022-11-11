@@ -15,6 +15,8 @@ Dans le cadre de notre projet de fin de module React, nous avons souhaité appre
     - [ThemeContext et ThemeReducer](#themecontext-et-themereducer)
     - [MusicContext et MusicReducer](#musiccontext-et-musicreducer)
   - [MusicPlayer](#musicplayer)
+    - [Récupérer les données stockées dans le contexte](#Récupérer-les-données-stockées-dans-le-contexte)
+    - [Le player](#Le-player)
   - [Auteurs](#auteurs)
 
 ### Présentation de l'outil
@@ -330,7 +332,7 @@ L'utilisation de ce context est essentiel pour le bon fonctionnement du player e
 Nous avons déjà pu avoir un aperçu du player. 
 ![image](https://user-images.githubusercontent.com/92028058/200021521-5635ff25-c839-4d50-b4ea-6c02a6f4d549.png)
 
-#### Récupérer les données stockées dans le contexte.
+#### Récupérer les données stockées dans le contexte
 Tout d'abord les imports utiles pour récupérer nos données.
 ```js
 import { useContext, useEffect, useRef, useState } from "react";

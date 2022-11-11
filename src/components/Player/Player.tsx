@@ -28,6 +28,7 @@ export default function Player() {
     }
 
     const handleMuteVolume = ()=>{
+
         if(playerRef.current){
             if(isMuted){
                 playerRef.current.volume = music.state.volume/100 ;
@@ -39,7 +40,6 @@ export default function Player() {
             }
         }
     }
-    
     const handleAudioVolume = (e:any)=>{
         if(playerRef.current){
             music.dispatch({type:"SET_VOLUME",payload:{volume: parseFloat(e.target.value)}})
