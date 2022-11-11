@@ -62,7 +62,40 @@ Votre Application est donc lancée à l'adresse http://localhost:3000/  ---> enj
 
 #### Json-Server
 ```js
-npm install json-server
+npm install -g json-server
+```
+
+[Json-Server](https://www.npmjs.com/package/json-server) sert à créer une "fake" REST API sans coder et en moins de 30s.
+
+Il a été créé pour que les développeurs front-end, qui ont besoin d'un petit back-end rapide, puissent commencer coder rapidement ou faire leur prototypage. 
+
+Pour l'utiliser, il suffit de créer un fichier `.json` et Json-Server s'occupera tout seul de créer les endpoints.
+
+```json
+{
+    "playlist": [
+        {
+            "id":1,
+            "icon": "https://images.genius.com/f8363c49c70651643f979dbf68b85db5.300x300x1.jpg",
+            "title": "Playlist 1",
+            "author": "Yanis",
+            "date": "2021-10-14",
+            "musicsId": [
+                1, 2
+            ]
+        },
+        {
+            "id":2,
+            "icon": "https://i.scdn.co/image/ab67616d0000b2733d9cedf011e85ff7f7fdbc39",
+            "title": "React Playlist",
+            "author": "Corentin",
+            "date": "2022-10-13",
+            "musicsId": [
+                6, 3, 5
+            ]
+        }
+    ]
+}
 ```
 
 #### Axios
@@ -294,10 +327,178 @@ L'utilisation de ce context est essentiel pour le bon fonctionnement du player e
 
 ### MusicPlayer
 
+Nous avons déjà pu avoir un aperçu du player. 
+![image](https://user-images.githubusercontent.com/92028058/200021521-5635ff25-c839-4d50-b4ea-6c02a6f4d549.png)
+
+#### Récupérer les données stockées dans le contexte.
+Tout d'abord les imports utiles pour récupérer nos données.
+```js
+import { useContext, useEffect, useRef, useState } from "react";
+import { MusicContext } from "../../context/musicContext/musicContext";
+import { ThemeContext } from '../../context/themeContext/themeContext';
+import { ActionsTypes } from '../../context/musicContext/musicReducer';
+```
+
+Ensuite dans notre player nous pouvons utiliser `useContext()` et accéder aux données avec `[context].state`
+```js
+const music = useContext(MusicContext);
+const theme = useContext(ThemeContext);
+
+const darkMode = theme.state.darkMode;
+```
+
+Pour utiliser les actions définies dans le contextReducer, nous pouvons utiliser `[context].dispatch({type:"[NOTRE_ACTION]"})`:
+```js
+music.dispatch({type:"SET_PAUSE"})
+``` 
+#### Le player
+
+Le Player peut se découper en 3 parties: 
+* L'affichage relatif à la musique (gauche)
+  ```js
+    <div className="player-left">
+        <img src={music.state.music?.icon} alt={music.state.music?.title +' by '+ music.state.music?.author}/>
+        <figcaption> <span> {music.state.music?.title} </span> <span> {music.state.music?.author} </span> </figcaption>
+    </div>
+   ```
+   
+* La partie qui influe sur la musique elle-même (milieu)
+   ```js
+    <div className="player-center">
+        <div className="player-center-header">
+            <button onClick={handlePrevious}> <ImPrevious /> </button>
+            {
+                music.state.isRunning ? (<button onClick={handleIsRunning}> <AiFillPauseCircle /> </button>)
+                : ( <button onClick={handleIsRunning}> <AiFillPlayCircle /> </button>)
+            }
+            <button onClick={handleNext}> <ImNext /> </button>
+        </div>
+        <audio
+            ref={playerRef}
+            onEnded={handleNext}
+            controls
+            src={music.state.music?.link}>
+                <a href={music.state.music?.link}>
+                    Download audio  
+                </a>
+        </audio>
+    </div>
+   ```
+
+   Ici il est important de noter l'utilisation de `ref={PlayerRef}` dans la balise html `audio`. En effet pour pouvoir interagir avec notre player, react nous offre le hook `useRef` qui permet d'interagir avec le DOM où se trouve la balise `audio`.
+
+   ```js
+    const playerRef = useRef<HTMLAudioElement>(null)
+   ```
+
+   Pour les fonctions interagissant avec le DOM et donc avec le player :
+   * Interaction avec le bouton Play/Pause[1]
+    ```js
+    const handleIsRunning=()=>{
+        if(playerRef.current){
+            if(music.state.isRunning){
+                music.dispatch({type:"SET_PAUSE"})
+            }
+            else {
+                music.dispatch({type:"SET_PLAY"})
+            }
+        }
+    }
+    useEffect(() => {
+        if(playerRef.current){
+            if(music.state.isRunning){
+                playerRef.current.play();
+            }
+            else{
+                playerRef.current.pause();
+            }
+        }
+    }, [music.state.isRunning, music.state.music]);
+    ```
+    * Interaction avec les boutons Précédent/Suivant [2]
+    ```js
+    async function fetchMusicById(id:number){
+        const res = await axios.get(`http://localhost:3001/musics/${id}`) 
+        return res.data
+    }
+
+    const handlePrevious = async () => {
+        if(music.state.index){
+            if (music.state.index > 1 ) {
+                music.state.index -= 1
+            } else {
+                music.state.index = music.state.playlistMusicsIds.length;
+            }
+            let previousMusic = await fetchMusicById(music.state.playlistMusicsIds[music.state.index-1])
+            music.dispatch({
+                type: ActionsTypes.SET_NEXT_PREVIOUS,
+                payload: { index: music.state.index, music: previousMusic}
+            })
+        }
+    }
+
+    const handleNext = async () => {        
+        if(music.state.index){
+            if (music.state.index < music.state.playlistMusicsIds.length ) {
+                music.state.index += 1
+            } else {
+                music.state.index = 1;
+            }
+            let nextMusic = await fetchMusicById(music.state.playlistMusicsIds[music.state.index-1])
+            music.dispatch({
+                type: ActionsTypes.SET_NEXT_PREVIOUS,
+                payload: { index: music.state.index, music: nextMusic},
+            })
+        }
+    }
+    ```
+
+   
+* La partie qui modifie le son du player (droite) [3]
+   ```js
+    <div className="player-right">
+        <input type="range" min="0" max="100" onChange={handleAudioVolume} value={music.state.volume}/>
+        {
+            isMuted ? (<button onClick={handleMuteVolume}> <GoMute /></button>)
+            : ( <button onClick={handleMuteVolume}> <GoUnmute />  </button>)
+        }
+    </div>
+   ```
+   En ce qui concerne les fonctions qui s'occupe d'interagir avec le DOM.
+
+   ```js
+   const [isMuted, setIsMuted] = useState(false);
+
+   const handleMuteVolume = ()=>{
+        if(playerRef.current){
+            if(isMuted){
+                playerRef.current.volume = music.state.volume/100 ;
+                setIsMuted(false);
+            }
+            else {
+                playerRef.current.volume=0;
+                setIsMuted(true);
+            }
+        }
+    }
+    
+    const handleAudioVolume = (e:any)=>{
+        if(playerRef.current){
+            music.dispatch({type:"SET_VOLUME",payload:{volume: parseFloat(e.target.value)}})
+            playerRef.current.volume= (parseFloat(e.target.value)/100);
+            if (parseFloat(e.target.value) === 0) {
+                setIsMuted(true);
+            } else {  
+                setIsMuted(false);
+            }
+        }
+        
+    }
+   ```
 
 ### Auteurs
 
-* **Yanis BENAMOR** _alias_ [@KizutoFR](https://github.com/KizutoFR)
+* **Yanis BEN AMOR** _alias_ [@KizutoFR](https://github.com/KizutoFR)
 * **Corentin MAILLER** _alias_ [@MAILLERC0](https://github.com/MAILLERC0)
 
 

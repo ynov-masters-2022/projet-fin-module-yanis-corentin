@@ -7,13 +7,14 @@ import { MusicContext } from "../../context/musicContext/musicContext";
 import { ThemeContext } from '../../context/themeContext/themeContext';
 import { ActionsTypes } from '../../context/musicContext/musicReducer';
 import axios from 'axios';
+
 export default function Player() {
 
     const music = useContext(MusicContext);
-    const playerRef = useRef<HTMLAudioElement>(null)
-    const [isMuted, setIsMuted] = useState(false);
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
+    const playerRef = useRef<HTMLAudioElement>(null)
+    const [isMuted, setIsMuted] = useState(false);
 
     const handleIsRunning=()=>{
         if(playerRef.current){
@@ -27,7 +28,6 @@ export default function Player() {
     }
 
     const handleMuteVolume = ()=>{
-
         if(playerRef.current){
             if(isMuted){
                 playerRef.current.volume = music.state.volume/100 ;
@@ -39,6 +39,7 @@ export default function Player() {
             }
         }
     }
+    
     const handleAudioVolume = (e:any)=>{
         if(playerRef.current){
             music.dispatch({type:"SET_VOLUME",payload:{volume: parseFloat(e.target.value)}})
@@ -132,9 +133,6 @@ export default function Player() {
                         isMuted ? (<button onClick={handleMuteVolume}> <GoMute /></button>)
                         : ( <button onClick={handleMuteVolume}> <GoUnmute />  </button>)
                     }
-                    
-                    
-                    
                 </div>
             </figure>
         </div>
